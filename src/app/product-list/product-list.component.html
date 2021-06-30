@@ -1,0 +1,50 @@
+<div class="panel panel-primary">
+  <div class="panel-heading"> {{titolLlistat}} </div>
+  <div *ngIf="productes.length==0">
+    <h4>No hi han productes</h4>
+  </div>
+  <div class="row">
+    <div class="col-md-6">
+      <h3>Filtrat per: {{listFilter}}</h3>
+    </div>
+    <div class="col-md-6">
+      <div class="form-group">
+        <input type="text" class="form-control" name="search" [(ngModel)]="listFilter">
+      </div>
+    </div>
+  </div>
+  <!-- caixa de filtrat -->
+  <!-- <div class="row">
+        <div class="col-md-2">
+            Filtrat per:
+        </div>
+        <div class="col-md-4">
+            <input type="text" [(ngModel)]="listFilter">
+        </div>
+    </div> -->
+  <!-- fi caixa filtrat -->
+  <div *ngIf="productes.length>0" class="table-responsive">
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Imatge</th>
+          <th>Nom</th>
+          <th>Sobrenom</th>
+          <th>Equip</th>
+          <th>Posició</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr :*ngFor="let producte of productes | productListFilter:listFilter">
+          <td>
+            <app-image [id]=producte.id></app-image>
+          </td>
+          <td>{{producte.nom}}</td>
+          <td>{{producte.sobrenom}}</td>
+          <td>{{producte.equip}}</td>
+          <td>{{producte._posicio.nom}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

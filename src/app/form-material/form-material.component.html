@@ -1,0 +1,47 @@
+<mat-toolbar color="primary">
+    <span class="fill-remaining-space">My Reactive Form with Material</span>
+</mat-toolbar>
+
+<div class="container" *ngIf="!post; else forminfo" novalidate>
+    <form method="POST" [formGroup]="myForm" (ngSubmit)="onSubmit()" class="form">
+
+
+        <mat-form-field class="form-element">
+            <label for="">Posició</label>
+            <select matNativeControl formControlName="_posicio" required>
+                <option value="{{categoria.id}}" *ngFor="let categoria of categories">{{categoria.nom}}</option>
+            </select>
+        </mat-form-field>
+        <br>
+        <mat-form-field class="form-element">
+            <label for="nom">Nom</label>
+            <input matInput formControlName="nom">
+        </mat-form-field>
+        <br>
+        <mat-form-field class="form-element">
+            <label for="sobrenom">Sobrenom</label>
+            <input matInput formControlName="sobrenom">
+        </mat-form-field>
+        <br>
+        <mat-form-field class="form-element">
+            <label for="equip">Equip</label>
+            <input matInput formControlName="equip">
+        </mat-form-field>
+        <br>
+        <label for="imatge">Imatge</label>
+        <div class="form-group">
+            <input class="form-control" type="file" formControlName="imatge" required (change)="onFileSelect($event)" />
+        </div>
+
+        <div class="form-element">
+            <button mat-raised-button color="primary" type="submit" class="button">Submit Form</button>
+        </div>
+
+    </form>
+</div>
+
+<ng-template #forminfo>
+    <div class="container">
+        {{ post | json }}
+    </div>
+</ng-template>
